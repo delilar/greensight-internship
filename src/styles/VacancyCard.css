@@ -1,0 +1,236 @@
+.vacancy-card {
+  padding: 20px;
+  position: relative;
+  margin-bottom: 30px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.vacancy-card:last-child {
+  margin-bottom: 0;
+}
+
+.vacancy-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vacancy-title-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.vacancy-title-text p {
+  max-width: 300px;
+}
+
+.vacancy-company-logo {
+  margin: 0 10px;
+  max-width: 48px;
+  max-height: 48px;
+}
+
+.vacancy-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #666;
+}
+
+.vacancy-detail {
+  display: flex;
+  align-items: center;
+}
+
+.vacancy-detail-label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.vacancy-description-preview {
+  margin: 15px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.vacancy-description {
+  margin: 15px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.vacancy-success-snapshot {
+  margin-top: 15px;
+}
+
+.vacancy-success-snapshot-title {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.vacancy-success-snapshot-list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.vacancy-success-snapshot-item {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+.vacancy-hidden-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.vacancy-hidden-content.show {
+  max-height: 1000px;
+}
+
+.vacancy-toggle-button {
+  color: #0066cc;
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.vacancy-toggle-button:hover {
+  text-decoration: underline;
+}
+
+.vacancy-description img {
+  max-width: 100%;
+  height: auto;
+}
+
+.vacancy-description ul,
+.vacancy-description ol {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.vacancy-description p {
+  margin: 10px 0;
+}
+
+.vacancy-description h1,
+.vacancy-description h2,
+.vacancy-description h3,
+.vacancy-description h4 {
+  margin: 15px 0 10px;
+}
+
+.vacancy-description a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.vacancy-description a:hover {
+  text-decoration: underline;
+}
+
+.vacancy-respond-button {
+  background-color: #383838;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 11.5px 32px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.vacancy-respond-button:hover {
+  background-color: #131313;
+}
+
+.success-snapshot {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.success-snapshot li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.success-snapshot li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #0066cc;
+}
+
+@media (max-width: 480px) {
+  .vacancy-title {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .vacancy-title-text {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .vacancy-title-text p {
+    margin: 0 auto;
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  .vacancy-company-logo {
+    margin: 0 10px;
+    width: 48px;
+    height: 48px;
+    margin: 0px;
+    flex-shrink: 0;
+  }
+
+  .vacancy-respond-button {
+    width: 100%;
+    text-align: center;
+    margin: 24px 0;
+    padding: 11.5px 0;
+  }
+
+  .vacancy-details {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .vacancy-detail {
+    margin-bottom: 5px;
+  }
+
+  .vacancy-description-preview,
+  .vacancy-description {
+    margin: 10px 0;
+  }
+}
