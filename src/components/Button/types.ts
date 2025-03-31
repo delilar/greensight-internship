@@ -1,6 +1,6 @@
 import { ReactNode, MouseEvent } from "react";
 
-export interface ButtonProps {
+export interface IButtonProps {
     color?: "blue" | "gray"
     children: ReactNode;
     onClick: (event: MouseEvent<HTMLButtonElement>) => void;

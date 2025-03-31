@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export interface LinkProps {
+export interface ILinkProps {
     type?: 'standart' | 'underlined';
     iconPosition: 'none' | 'left' | 'right';
     link?: string;

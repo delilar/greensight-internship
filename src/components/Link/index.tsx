@@ -1,11 +1,11 @@
 import { FC } from "react";
 import classNames from "classnames";
 
-import { LinkProps } from "./types";
+import { ILinkProps } from "./types";
 
 import "@styles/components/Link.scss";
 
-const Link: FC<LinkProps> = ({ type="standart", onClick, icon, iconPosition="none", className, children }) => {
+const Link: FC<ILinkProps> = ({ type="standart", onClick, icon, iconPosition="none", className, children }) => {
   
     const linkClassName = classNames(
         "link",

@@ -3,9 +3,9 @@ import ChevronUp from '@icons/chevronUp.svg';
 import ChevronDown from '@icons/chevronDown.svg';
 import '@styles/components/Dropdown.scss';
 
-import { DropdownProps } from './types.ts';
+import { IDropdownProps } from './types.ts';
 
-const Dropdown: FC<DropdownProps> = ({ 
+const Dropdown: FC<IDropdownProps> = ({ 
   id, 
   name, 
   label, 

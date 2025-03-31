@@ -1,10 +1,10 @@
 import { FC } from "react"
 
 import "@styles/components/Button.scss"
-import { ButtonProps } from "./types"
+import { IButtonProps } from "./types"
 import classNames from "classnames"
 
-const Button: FC<ButtonProps> = ({ color, onClick, children, className }) => {
+const Button: FC<IButtonProps> = ({ color, onClick, children, className }) => {
 
     const buttonClassName = classNames(
         "button",
