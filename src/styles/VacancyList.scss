@@ -1,0 +1,89 @@
+@use "@styles/global/index.scss" as *;
+
+.vacancy-list {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: $font-primary;
+  
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
+  
+  &__title {
+    color: $color-black;
+    margin-left: 2rem;
+    margin-bottom: 0.4rem;
+    @include typography(h1);
+  }
+  
+  &__content {
+    padding: 2rem;
+    background-color: $color-white;
+    
+    @media (max-width: 480px) {
+      padding: 1.5rem;
+    }
+  }
+  
+  &__empty {
+    text-align: center;
+    padding: 4rem 0;
+    color: $color-gray800;
+    @include typography(m-r);
+  }
+  
+  &__show-more {
+    display: block;
+    width: 100%;
+    padding: 1.2rem;
+    background-color: $color-blue;
+    color: $color-white;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 2rem;
+    text-align: center;
+    @include typography(m-r);
+    
+    &:hover {
+      background-color: $color-blue-hover;
+    }
+  }
+  
+  &__loading {
+    text-align: center;
+    padding: 2rem;
+    color: $color-gray800;
+    @include typography(m-r);
+  }
+  
+  &__error {
+    text-align: center;
+    padding: 2rem;
+    color: #d32f2f;
+    background-color: $color-white;
+    border-radius: 0.4rem;
+    margin: 2rem 0;
+    @include typography(m-r);
+  }
+}
+
+.mobile-header {
+  background-color: $color-white;
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 0.1rem solid $color-gray300;
+  @include typography(m-b);
+}
+
+body {
+  background-color: $color-white;
+  margin: 0;
+  padding: 0;
+  @include typography(m-r);
+}
+
+.responsive-grid-container {
+  @include responsive-flex-grid;
+}

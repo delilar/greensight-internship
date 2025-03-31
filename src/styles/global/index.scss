@@ -1,0 +1,7 @@
+@forward "@styles/global/colors.scss";
+@forward "@styles/global/typography.scss";
+@forward "@styles/global/grid.scss";
+
+@forward "@styles/global/colors.scss" as colors-*;
+@forward "@styles/global/typography.scss" as typography-*;
+@forward "@styles/global/grid.scss" as grid-*;

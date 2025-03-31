@@ -1,0 +1,54 @@
+@use "@styles/global/index.scss" as *;
+
+.dropdown-group {
+    flex: 1;
+    min-width: 26.5rem;
+    box-sizing: border-box;
+  
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+      color: $color-black;
+      @include typography(s-r);
+    }
+  
+    select {
+      width: 100%;
+      padding: 12px 35px 12px 12px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 14px;
+      appearance: none;
+      background-image: none;
+      position: relative;
+      color: $color-black;
+
+      &:focus {
+        outline-color: $color-blue;
+      }
+      
+      &.dropdown-placeholder {
+        color: $color-gray600;
+
+        option {
+          color: $color-black;
+        }
+      }
+    }
+
+    .dropdown-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .dropdown-group {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }

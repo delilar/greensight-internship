@@ -1,0 +1,233 @@
+@use "@styles/global/index.scss" as *;
+
+.vacancy-card {
+  padding: 2rem;
+  position: relative;
+  margin-bottom: 3rem;
+  background-color: $color-white;
+  box-shadow: $box-light-shadow;
+  border-radius: 1.6rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    
+    @media (max-width: 480px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+  &__title-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    
+    @media (max-width: 480px) {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  
+  &__title {
+    color: $color-black;
+    max-width: 30rem;
+    margin: 0;
+    @include typography(h4);
+    
+    @media (max-width: 480px) {
+      margin-top: 0.8rem;
+      text-align: start;
+    }
+  }
+  
+  &__logo {
+    margin: 0 1rem;
+    max-width: 4.8rem;
+    max-height: 4.8rem;
+    
+    @media (max-width: 480px) {
+      margin: 0;
+      flex-shrink: 0;
+    }
+  }
+  
+  &__details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    color: $color-gray800;
+    
+    
+    @media (max-width: 480px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+  
+  &__detail {
+    display: flex;
+    align-items: center;
+    color: $color-black;
+    @include typography(s-b);
+  }
+  
+  &__detail-label {
+    margin-right: 0.5rem;
+    color: $color-gray700;
+    @include typography(s-r);
+  }
+  
+  &__description {
+    margin: 1.5rem 0;
+    line-height: 1.5;
+    color: $color-gray900;
+    @include typography(s-r);
+    
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    ul, ol {
+      padding-left: 2rem;
+      margin: 1rem 0;
+    }
+    
+    p {
+      margin: 1rem 0;
+    }
+    
+    h1, h2, h3, h4 {
+      margin: 1.5rem 0 1rem;
+    }
+    
+    a {
+      color: $color-blue;
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      margin: 1rem 0;
+    }
+  }
+  
+  &__description-container {
+    position: relative;
+    overflow: hidden;
+    max-height: 17rem;
+    transition: max-height 0.3s ease-in-out;
+
+    @media (max-width: 480px) {
+      max-height: 40rem;
+    }
+  
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 6rem;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), white);
+    }
+  
+    &--expanded {
+      max-height: 100rem;
+      &::after {
+        display: none;
+      }
+    }
+  }
+  
+  &__toggle-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  &__apply-button {
+    background-color: $color-gray900;
+    color: $color-white;
+    border: none;
+    border-radius: 0.3rem;
+    padding: 1.15rem 3.2rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    
+    &:hover {
+      background-color: $color-black;
+    }
+    
+    @media (max-width: 480px) {
+      width: 100%;
+      text-align: center;
+      margin: 2.4rem 0;
+      padding: 1.15rem 0;
+    }
+  }
+  
+  &__toggle {
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    @include typography(s-r);
+  }
+  
+  &__success-snapshot {
+    margin-top: 1.5rem;
+    
+    &-title {
+      margin-bottom: 0.5rem;
+      color: $color-gray900;
+      @include typography(s-b);
+    }
+    
+    &-list {
+      margin: 0;
+      padding-left: 2rem;
+    }
+    
+    &-item {
+      margin-bottom: 0.5rem;
+      color: $color-gray900;
+      @include typography(s-r);
+    }
+  }
+}
+
+.success-snapshot {
+  padding-left: 0;
+  list-style-type: none;
+  
+  &__item {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.5rem;
+    @include typography(s-r);
+    
+    &:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: $color-blue;
+    }
+  }
+}

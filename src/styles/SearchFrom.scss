@@ -1,0 +1,46 @@
+@use "@styles/global/index.scss" as *;
+
+.search-form {
+  display: inline-flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  box-sizing: border-box;
+  row-gap: 1.6rem;
+  
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.4rem;
+    align-items: flex-end;
+  }
+  
+  &__row {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    margin-bottom: 0;
+    
+    @media (max-width: 480px) {
+      flex-direction: column;
+    }
+  }
+  
+  &__clear-link {
+    display: inline-block;
+    color: $color-blue;
+    
+    @include typography(s-r);
+  }
+
+  .dropdown-group {
+    label {
+      @include typography(xs-b);
+    }
+  }
+  
+  .dropdown-placeholder {
+    color: $color-gray600;
+  }
+}

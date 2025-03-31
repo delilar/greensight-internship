@@ -1,0 +1,45 @@
+@use "@styles/global/index.scss" as *;
+
+.link {
+    display: inline-block;
+    color: $color-blue;
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    text-decoration-thickness: 0.1rem;
+    text-decoration-color: $color-blue;
+    text-underline-offset: 0.6rem;
+    cursor: pointer;
+    @include typography(m-r);
+}
+
+.link-wrapper {
+    display: inline-flex;
+    align-items: center;
+    width: max-content;
+    column-gap: 0.4rem;
+
+    svg {
+        width: 1.6rem;
+        height: 1.6rem;
+
+        path {
+            stroke: $color-blue;
+        }
+    }
+
+    &:hover {
+
+        .link {
+            color: $color-blue-hover;
+            text-decoration: underline;
+        }
+        
+        svg {
+            path {
+                stroke: $color-blue-hover;
+            }
+        }
+    
+    }
+}

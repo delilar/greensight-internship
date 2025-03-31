@@ -1,5 +1,6 @@
+import { useInfiniteQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { Vacancy, VacancyFilter } from '../models/Vacancy';
+import { Vacancy, VacancyFilter } from '../types/Vacancy';
 
 const API_BASE_URL = 'https://api.hh.ru';
 
@@ -23,31 +24,37 @@ type HHApiResponse = {
   found: number;
 };
 
-export const fetchVacancies = async (
-  filter: VacancyFilter = {},
-  page = 0,
-  perPage = 5
-): Promise<{ items: Vacancy[]; totalCount: number }> => {
-  try {
-    const params: Record<string, string | number> = {
-      page,
-      per_page: perPage,
-    };
+const fetchVacanciesPage = async ({ 
+  pageParam = 0, 
+  filter = {}, 
+  perPage = 5 
+}: { 
+  pageParam?: number; 
+  filter?: VacancyFilter; 
+  perPage?: number; 
+}): Promise<{ 
+  items: Vacancy[]; 
+  totalCount: number; 
+  nextPage: number | undefined; 
+}> => {
+  const params: Record<string, string | number> = {
+    page: pageParam,
+    per_page: perPage,
+  };
 
-    if (filter.form) {
-      params.schedule = filter.form === 'Полная занятость' ? 'fullDay' : 'flexible';
-    }
+  if (filter.form) {
+    params.schedule = filter.form === 'Полная занятость' ? 'fullDay' : 'flexible';
+  }
 
-    if (filter.position) {
-      params.text = filter.position;
-    }
+  if (filter.position) {
+    params.text = filter.position;
+  }
 
-    const response = await axios.get<HHApiResponse>(`${API_BASE_URL}/vacancies`, { params });
+  const { data } = await axios.get<HHApiResponse>(`${API_BASE_URL}/vacancies`, { params });
 
-    const vacancyPromises = response.data.items.map(async (item) => {
-      const detailedResponse = await axios.get<HHVacancyResponse>(`${API_BASE_URL}/vacancies/${item.id}`);
-      const detailedData = detailedResponse.data;
-
+  const items = await Promise.all(
+    data.items.map(async (item) => {
+      const { data: detailedData } = await axios.get<HHVacancyResponse>(`${API_BASE_URL}/vacancies/${item.id}`);
       return {
         id: detailedData.id,
         title: detailedData.name,
@@ -65,16 +72,29 @@ export const fetchVacancies = async (
         responsibilities: detailedData.key_skills?.map((skill) => skill.name) ||
           (detailedData.responsibility ? [detailedData.responsibility] : []),
       };
-    });
+    })
+  );
 
-    const items = await Promise.all(vacancyPromises);
+  const hasNextPage = data.items.length === perPage && (pageParam + 1) * perPage < data.found;
+  const nextPage = hasNextPage ? pageParam + 1 : undefined;
 
-    return {
-      items,
-      totalCount: response.data.found,
-    };
-  } catch (error) {
-    console.error('Error fetching vacancies:', error);
-    throw error;
-  }
+  return { items, totalCount: data.found, nextPage };
+};
+
+export const useVacanciesInfiniteQuery = (filter: VacancyFilter = {}, perPage = 5) => {
+  return useInfiniteQuery({
+    queryKey: ['infiniteVacancies', filter, perPage],
+    queryFn: ({ pageParam }) => fetchVacanciesPage({ pageParam, filter, perPage }),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => lastPage.nextPage,
+  });
+};
+
+export const useVacanciesQuery = (filter: VacancyFilter = {}, page = 0, perPage = 5) => {
+  return useInfiniteQuery({
+    queryKey: ['infiniteVacancies', filter, perPage],
+    queryFn: ({ pageParam }) => fetchVacanciesPage({ pageParam, filter, perPage }),
+    initialPageParam: page,
+    getNextPageParam: (lastPage) => lastPage.nextPage,
+  });
 };

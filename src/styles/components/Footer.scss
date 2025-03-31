@@ -1,0 +1,68 @@
+@use "@styles/global/index.scss" as *;
+
+.footer {
+  background-color: $color-gray900;
+  color: $color-white;
+  padding: 4rem 1.6rem;
+  width: 100%;
+  font-family: $font-primary;
+  
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 0 3rem;
+    
+    @media (max-width: 480px) {
+      flex-direction: column;
+      gap: 2.4rem;
+    }
+  }
+  
+  &__left, &__right {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  
+  &__contact {
+    @include typography(m-r);
+  }
+  
+  &__phone, &__email {
+    color: $color-white;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  &__address {
+    text-align: right;
+    @include typography(m-r);
+    
+    @media (max-width: 480px) {
+      text-align: left;
+    }
+  }
+  
+  &__directions {
+    text-align: right;
+    
+    @media (max-width: 480px) {
+      text-align: left;
+    }
+  }
+  
+  &__directions-link {
+    color: $color-white;
+    text-decoration: none;
+    @include typography(m-r);
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

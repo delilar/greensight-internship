@@ -1,0 +1,34 @@
+$flex-grid-levels: (
+  1920: (padding-left: auto, padding-right: auto, sections: (20, 20, 20, 20, 20, 20, 20, 20, 20, 20)),
+  1600: (padding-left: 120px, padding-right: 120px, sections: (20, 20, 20, 20, 20, 20, 20, 20, 20, 20)),
+  1440: (padding-left: 120px, padding-right: 120px, sections: (20, 20, 20, 20, 20, 20, 20, 20, 20, 20)),
+  1024: (padding-left: 32px, padding-right: 32px, sections: (20, 20, 20, 20)),
+  768: (padding-left: 32px, padding-right: 32px, sections: (20, 20, 20, 20)),
+  640: (padding-left: 32px, padding-right: 32px, sections: (20, 20, 20, 20)),
+  480: (padding-left: 32px, padding-right: 32px, sections: (20, 20)),
+  360: (padding-left: 16px, padding-right: 16px, sections: (20, 20)),
+  320: (padding-left: 16px, padding-right: 16px, sections: (20, 20))
+);
+
+@mixin responsive-flex-grid {
+  @each $breakpoint, $config in $flex-grid-levels {
+    @media (max-width: #{$breakpoint}px) {
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding-left: #{map-get($config, 'padding-left')};
+      padding-right: #{map-get($config, 'padding-right')};
+      
+      > * {
+        flex-shrink: 0;
+        background-color: #90ee90;
+      }
+      
+      @for $i from 1 through length(map-get($config, 'sections')) {
+        > *:nth-child(#{$i}) {
+          width: #{nth(map-get($config, 'sections'), $i)}px;
+        }
+      }
+    }
+  }
+}
